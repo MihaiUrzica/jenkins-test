@@ -6,6 +6,9 @@ import com.example.demo.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @AllArgsConstructor
 public class BookDAO {
@@ -17,6 +20,10 @@ public class BookDAO {
         BookEntity entity = repository.findById(id).orElseThrow(NullPointerException::new);
         return fromEntity(entity);
 
+    }
+
+    public List<Book> findAll(){
+        return repository.findAll().stream().map(this::fromEntity).collect(Collectors.toList());
     }
 
     public Book save(Book book){

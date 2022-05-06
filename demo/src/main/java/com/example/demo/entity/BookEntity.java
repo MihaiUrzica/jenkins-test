@@ -25,4 +25,8 @@ public class BookEntity {
     @Column
     private String author;
 
+    public BookEntity(final String name, final String author) {
+        this.name = name;
+        this.author = author;
+    }
 }

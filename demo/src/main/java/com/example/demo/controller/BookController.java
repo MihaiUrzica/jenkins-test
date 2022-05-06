@@ -7,12 +7,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("books")
 public class BookController {
 
     private BookService service;
+
+    @GetMapping
+    public ResponseEntity<List<BookDTO>> findAll() {
+
+        List<BookDTO> bookDTOS = service.findAll().stream().map(this::toDTO).collect(Collectors.toList());
+
+        return new ResponseEntity<>(bookDTOS, HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<BookDTO> findById(@PathVariable int id) {
@@ -35,5 +46,9 @@ public class BookController {
 
     private Book fromDTO(BookDTO bookDTO){
         return new Book(bookDTO.getId(), bookDTO.getName(), bookDTO.getAuthor());
+    }
+
+    private BookDTO toDTO(Book book){
+        return new BookDTO(book.getId(), book.getName(), book.getAuthor());
     }
 }

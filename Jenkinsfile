@@ -6,14 +6,14 @@ pipeline{
 
         stage('build') {
             steps {
-                sh 'gradle wrapper --gradle-version 2.13'
-                sh './gradlew clean build -x test'
+                bat 'gradle wrapper --gradle-version 2.13'
+                bat './gradlew clean build -x test'
             }
         }
 
         stage('test') {
             steps {
-                sh './gradlew test'
+                bat './gradlew test'
             }
         }
 

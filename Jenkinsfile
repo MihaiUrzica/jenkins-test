@@ -6,6 +6,7 @@ pipeline{
 
         stage('build') {
             steps {
+                sh 'gradle wrapper --gradle-version 2.13'
                 sh './gradlew clean build -x test'
             }
         }

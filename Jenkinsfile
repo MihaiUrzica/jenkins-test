@@ -6,6 +6,7 @@ pipeline{
 
         stage('build') {
             steps {
+
                 bat './gradlew clean build -x test'
             }
         }

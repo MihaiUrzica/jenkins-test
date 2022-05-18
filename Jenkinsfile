@@ -6,7 +6,7 @@ pipeline{
 
         stage('build') {
             steps {
-                bat 'cd demo gradlew clean build -x test'
+                bat 'cd demo & gradlew clean build -x test'
             }
         }
 

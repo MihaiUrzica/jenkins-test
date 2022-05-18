@@ -17,6 +17,13 @@ pipeline{
             }
         }
 
+        stage('run/deploy'){
+            steps{
+                bat 'cd demo & gradle bootRun'
+            }
+
+        }
+
     }
 
 }

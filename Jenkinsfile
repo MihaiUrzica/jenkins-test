@@ -13,7 +13,7 @@ pipeline{
 
         stage('test') {
             steps {
-                bat 'gradlew test'
+                bat 'cd demo & gradlew test'
             }
         }
 

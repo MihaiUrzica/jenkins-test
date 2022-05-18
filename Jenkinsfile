@@ -19,7 +19,9 @@ pipeline{
 
         stage('run/deploy'){
             steps{
-                bat 'cd demo & gradle bootRun'
+                withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                   bat 'cd demo & gradle bootRun'
+                }
             }
 
         }
